@@ -8,11 +8,11 @@
 #' @param data A data.frame or tibble of observation data.
 #' @param newdata A data.frame or tibble of prediction variables data.
 #' @param kappa (optional) A numeric value of the percentage of observation locations
-#' with high similarity to a prediction location. $kappa = 1 - tau$, where `tau` is
+#' with high similarity to a prediction location. \eqn{kappa = 1 - tau}, where `tau` is
 #' the probability parameter in quantile operator. The default kappa is 0.25, meaning
 #' that 25% of observations with high similarity to a prediction location are used for
 #' modelling.
-#' @param cores (optional) positive integer. If cores > 1, a 'parallel' package
+#' @param cores (optional) positive integer. If cores > 1, a `parallel` package
 #' cluster with that many cores is created and used. You can also supply a cluster
 #' object. Default is `1`.
 #'
@@ -99,18 +99,17 @@ gos = \(formula, data = NULL, newdata = NULL, kappa = 0.25, cores = 1){
 #' @references
 #' Song, Y. (2022). Geographically Optimal Similarity. Mathematical Geosciences. doi: 10.1007/s11004-022-10036-8.
 #'
-#' @param formula A formula of GOS model
-#' @param data A data.frame or tibble of observation data
+#' @param formula A formula of GOS model.
+#' @param data A data.frame or tibble of observation data.
 #' @param kappa (optional) A numeric value of the percentage of observation locations
-#' with high similarity to a prediction location. $kappa = 1 - tau$, where `tau` is
-#' the probability parameter in quantile operator. The default kappa is 0.25, meaning
-#' that 25% of observations with high similarity to a prediction location are used for
-#' modelling.
+#' with high similarity to a prediction location. \eqn{kappa = 1 - tau}, where `tau` is
+#' the probability parameter in quantile operator. kappa is 0.25 means that 25% of
+#' observations with high similarity to a prediction location are used for modelling.
 #' @param nrepeat (optional) A numeric value of the number of cross-validation training times.
-#'                The default value is 10.
-#' @param nsplit (optional) The sample training set segmentation ratio,which in `(0,1)`,
-#' default is `0.5`.
-#' @param cores (optional) positive integer. If cores > 1, a 'parallel' package
+#'                The default value is `10`.
+#' @param nsplit (optional) The sample training set segmentation ratio,which in `(0,1)`.
+#' Default is `0.5`.
+#' @param cores (optional) positive integer. If cores > 1, a `parallel` package
 #' cluster with that many cores is created and used. You can also supply a cluster
 #' object. Default is `1`.
 #'

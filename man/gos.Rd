@@ -14,12 +14,12 @@ gos(formula, data = NULL, newdata = NULL, kappa = 0.25, cores = 1)
 \item{newdata}{A data.frame or tibble of prediction variables data.}
 
 \item{kappa}{(optional) A numeric value of the percentage of observation locations
-with high similarity to a prediction location. $kappa = 1 - tau$, where \code{tau} is
+with high similarity to a prediction location. \eqn{kappa = 1 - tau}, where \code{tau} is
 the probability parameter in quantile operator. The default kappa is 0.25, meaning
 that 25\% of observations with high similarity to a prediction location are used for
 modelling.}
 
-\item{cores}{(optional) positive integer. If cores > 1, a 'parallel' package
+\item{cores}{(optional) positive integer. If cores > 1, a \code{parallel} package
 cluster with that many cores is created and used. You can also supply a cluster
 object. Default is \code{1}.}
 }
