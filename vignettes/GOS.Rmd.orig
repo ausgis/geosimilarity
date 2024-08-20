@@ -106,11 +106,6 @@ In this step, the selected variables include Slope, Water, NDVI, SOC, pH, Road, 
 
 In the `gos_bestkappa()` function, if you set more optional numbers to the `kappa` vector and a higher value of the cross-validation repeat times `nrepeat`, a $\kappa$ value enabling more accurate prediction will be selected, but the computation time will be increased. You can specify the `cores` parameter to use multiple CPU cores for parallel computing.
 
-```{r bestkappa1,fig.width=7.5,fig.height=7.5}
-
-b1$plot
-```
-
 ```{r bestkappa, fig.width=13.5,fig.height=7.5,fig.cap=knitr::asis_output("**Figure 1**. Processes of determining the optimal similarity. (a) The optional `kappa` is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and `nrepeat` is 2. (b) The optional `kappa` is (0.01, 0.02, ..., 0.09, 0.1, 0.2, ..., 1) and `nrepeat` is 10.")}
 system.time({
 b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,

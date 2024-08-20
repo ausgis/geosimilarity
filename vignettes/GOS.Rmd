@@ -89,14 +89,14 @@ Data pre-processing and variable selection:
 hist(zn$Zn)
 ```
 
-![](man/figs/correlation-1.png)
+![](../man/figs/correlation-1.png)
 
 ``` r
 zn$Zn <- log(zn$Zn)
 hist(zn$Zn)
 ```
 
-![](man/figs/correlation-2.png)
+![](../man/figs/correlation-2.png)
 
 ``` r
 
@@ -112,7 +112,7 @@ cor_dt <- dt[, c(3:12)]
 chart.Correlation(cor_dt, histogram = TRUE, pch = 19)
 ```
 
-![](man/figs/correlation-3.png)
+![](../man/figs/correlation-3.png)
 
 ``` r
 
@@ -132,14 +132,6 @@ In the `gos_bestkappa()` function, if you set more optional numbers to the `kapp
 
 
 ``` r
-
-b1$plot
-```
-
-![plot of chunk bestkappa1](man/figs/bestkappa1-1.png)
-
-
-``` r
 system.time({
 b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     data = dt,
@@ -148,7 +140,7 @@ b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     cores = 1)
 })
 ##    user  system elapsed 
-##    2.68    0.02    4.85
+##    3.03    0.08    4.67
 b1$bestkappa
 ## [1] 0.1
 b1$cvmean
@@ -170,7 +162,7 @@ b2 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     cores = 6)
 })
 ##    user  system elapsed 
-##    0.02    0.00   17.13
+##    0.00    0.03   18.17
 b2$bestkappa
 ## [1] 0.08
 b2$cvmean
@@ -205,9 +197,9 @@ plot_grid(b1$plot,b2$plot,nrow = 1,label_fontfamily = 'serif',
           hjust = -1.5,align = 'hv')
 ```
 
-![**Figure 1**. Processes of determining the optimal similarity. (a) The optional `kappa` is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and `nrepeat` is 2. (b) The optional `kappa` is (0.01, 0.02, ..., 0.09, 0.1, 0.2, ..., 1) and `nrepeat` is 10.](man/figs/bestkappa-1.png)
+![**Figure 1**. Processes of determining the optimal similarity. (a) The optional `kappa` is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and `nrepeat` is 2. (b) The optional `kappa` is (0.01, 0.02, ..., 0.09, 0.1, 0.2, ..., 1) and `nrepeat` is 10.](../man/figs/bestkappa-1.png)
 
-*The default ratio of training set to test set in `gos_bestkappa()` is 1:1. You can specify the ratio of training set to test set by `nsplit` parameter*
+*The default ratio of training set to test set in `gos_bestkappa()` is `1:1`(`0.5`). You can specify the ratio of training set to test set by `nsplit` parameter*
 
 ### 2.3 Spatial prediction
 
@@ -218,7 +210,7 @@ g2 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
           data = dt, newdata = grid, kappa = 0.08, cores = 6)
 })
 ##    user  system elapsed 
-##    0.00    0.00    4.16
+##    0.03    0.00    4.21
 grid$pred <- exp(g2$pred)
 grid$uc99 <- g2$`uncertainty99`
 
@@ -244,7 +236,7 @@ plot_grid(f1,f2,nrow = 1,label_fontfamily = 'serif',
           hjust = -1.5,align = 'hv')
 ```
 
-![**Figure 2**. Geographially optimal similarity (GOS)-based prediction (a) and uncertainty (b).](man/figs/gos_result-1.png)
+![**Figure 2**. Geographially optimal similarity (GOS)-based prediction (a) and uncertainty (b).](../man/figs/gos_result-1.png)
 
 In addition, the following codes can be used to plot uncertainty under different $\zeta$ values.
 
@@ -265,7 +257,7 @@ ggplot(uc, aes(x = Lon, y = Lat, fill = value)) +
   theme_bw()
 ```
 
-![**Figure 3**. Geographially optimal similarity (GOS)-based spatial prediction uncertainties under different $\zeta$ values.](man/figs/uncertainty-1.png)
+![**Figure 3**. Geographially optimal similarity (GOS)-based spatial prediction uncertainties under different $\zeta$ values.](../man/figs/uncertainty-1.png)
 
 ### 2.4 Model evaluation
 
@@ -281,11 +273,6 @@ train <- dt[split,]
 test <- dt[-split,]
 
 library(DescTools)
-## 
-## Attaching package: 'DescTools'
-## The following object is masked from 'package:car':
-## 
-##     Recode
 # BCS
 h1 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
           data = train, newdata = test, kappa = 1)
