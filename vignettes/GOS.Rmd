@@ -1,7 +1,6 @@
 ---
 title: "Geographically Optimal Similarity (GOS) and the Third Law of Geography in R"
 author: "Yongze Song"
-date: "2022-11-08"
 output:
   rmarkdown::html_vignette:
     fig_caption: true
@@ -89,14 +88,14 @@ Data pre-processing and variable selection:
 hist(zn$Zn)
 ```
 
-![](man/figs/correlation-1.png)
+![](../man/figs/correlation-1.png)
 
 ``` r
 zn$Zn <- log(zn$Zn)
 hist(zn$Zn)
 ```
 
-![](man/figs/correlation-2.png)
+![](../man/figs/correlation-2.png)
 
 ``` r
 
@@ -130,7 +129,7 @@ cor_dt <- dt[, c(3:12)]
 chart.Correlation(cor_dt, histogram = TRUE, pch = 19)
 ```
 
-![](man/figs/correlation-3.png)
+![](../man/figs/correlation-3.png)
 
 ``` r
 
@@ -261,7 +260,7 @@ plot_grid(f1,f2,nrow = 1,label_fontfamily = 'serif',
           hjust = -1.5,align = 'hv')
 ```
 
-![**Figure 2**. Geographially optimal similarity (GOS)-based prediction (a) and uncertainty (b).](man/figs/gos_result-1.png)
+![**Figure 2**. Geographially optimal similarity (GOS)-based prediction (a) and uncertainty (b).](../man/figs/gos_result-1.png)
 
 In addition, the following codes can be used to plot uncertainty under different $\zeta$ values.
 
@@ -282,7 +281,7 @@ ggplot(uc, aes(x = Lon, y = Lat, fill = value)) +
   theme_bw()
 ```
 
-![**Figure 3**. Geographially optimal similarity (GOS)-based spatial prediction uncertainties under different $\zeta$ values.](man/figs/uncertainty-1.png)
+![**Figure 3**. Geographially optimal similarity (GOS)-based spatial prediction uncertainties under different $\zeta$ values.](../man/figs/uncertainty-1.png)
 
 ### 2.4 Model evaluation
 

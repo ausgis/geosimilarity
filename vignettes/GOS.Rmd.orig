@@ -1,7 +1,6 @@
 ---
 title: "Geographically Optimal Similarity (GOS) and the Third Law of Geography in R"
 author: "Yongze Song"
-date: "2022-11-08"
 output:
   rmarkdown::html_vignette:
     fig_caption: true
