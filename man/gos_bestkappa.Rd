@@ -46,17 +46,26 @@ A list of the result of the best kappa and the computation process curve.
 Computationally optimized function for determining the best kappa parameter for the optimal similarity
 }
 \examples{
-\dontrun{
-data(zn)
-data(grid)
+data("zn")
+# log-transformation
+hist(zn$Zn)
+zn$Zn <- log(zn$Zn)
+hist(zn$Zn)
+# remove outliers
+library(SecDim)
+k <- rmvoutlier(zn$Zn, coef = 2.5)
+dt <- zn[-k,]
+# determine the best kappa
 system.time({
-  b1 = gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-                     data = zn, kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
-                     nrepeat = 2, cores = 1)
+b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
+                    data = dt,
+                    kappa = c(0.01, 0.1, 1),
+                    nrepeat = 1,
+                    cores = 1)
 })
 b1$bestkappa
 b1$plot
-}
+
 }
 \references{
 Song, Y. (2022). Geographically Optimal Similarity. Mathematical Geosciences. doi: 10.1007/s11004-022-10036-8.

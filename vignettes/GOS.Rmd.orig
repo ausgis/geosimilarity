@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 ```
 
 
-&nbsp; 
+&nbsp;
 
 
 
@@ -32,11 +32,11 @@ To cite **`geosimilarity` R package** in publications, please use:
 **Song, Y. (2022) "Geographically Optimal Similarity", Mathematical Geosciences. doi: [10.1007/s11004-022-10036-8][7].**
 
 
-&nbsp; 
+&nbsp;
 
 
 
-&nbsp; 
+&nbsp;
 
 ## 1. Introduction to `geosimilarity` package
 
@@ -46,11 +46,11 @@ To cite **`geosimilarity` R package** in publications, please use:
 
 - Modeling the Third Law of Geography (i.e., basic configuration similarity (BCS) model).
 
-- Spatial prediction. 
+- Spatial prediction.
 
 More details of GOS models can be found in [Song (2022)][7].
 
-&nbsp; 
+&nbsp;
 
 
 
@@ -78,7 +78,7 @@ head(zn)
 
 Data pre-processing and variable selection:
 
-```{r correlation,warning=FALSE,fig.width=7.5,fig.height=7.5}
+```{r correlation,warning=FALSE,fig.width=7.5,fig.height=7.5,fig.cap=""}
 # log-transformation
 hist(zn$Zn)
 zn$Zn <- log(zn$Zn)
@@ -89,7 +89,7 @@ library(SecDim)
 k <- rmvoutlier(zn$Zn, coef = 2.5)
 dt <- zn[-k,]
 
-# correlation  
+# correlation
 library("PerformanceAnalytics")
 cor_dt <- dt[, c(3:12)]
 chart.Correlation(cor_dt, histogram = TRUE, pch = 19)
@@ -106,38 +106,45 @@ In this step, the selected variables include Slope, Water, NDVI, SOC, pH, Road, 
 
 In the `gos_bestkappa()` function, if you set more optional numbers to the `kappa` vector and a higher value of the cross-validation repeat times `nrepeat`, a $\kappa$ value enabling more accurate prediction will be selected, but the computation time will be increased. You can specify the `cores` parameter to use multiple CPU cores for parallel computing.
 
-For instance, if the optional `kappa` is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and `nrepeat` is 2, the $\lambda$ (the optimal $\kappa$) is 0.10, and its corresponding mean cross-validation RMSE is 0.6591. The computation time is 5.9s. 
+```{r bestkappa1,fig.width=7.5,fig.height=7.5}
 
-```{r bestkappa1, fig.width=7.5,fig.height=7.5}
+b1$plot
+```
+
+```{r bestkappa, fig.width=13.5,fig.height=7.5,fig.cap=knitr::asis_output("**Figure 1**. Processes of determining the optimal similarity. (a) The optional `kappa` is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and `nrepeat` is 2. (b) The optional `kappa` is (0.01, 0.02, ..., 0.09, 0.1, 0.2, ..., 1) and `nrepeat` is 10.")}
 system.time({
 b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     data = dt,
                     kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
-                    nrepeat = 2)
+                    nrepeat = 2,
+                    cores = 1)
 })
 b1$bestkappa
 b1$cvmean
-b1$plot
-```
 
-
-If the optional `kappa` is (0.01, 0.02, ..., 0.09, 0.1, 0.2, ..., 1) and `nrepeat` is 10, the $\lambda$ (the optimal $\kappa$) is 0.08, and its corresponding mean cross-validation RMSE is 0.6668, which are more stable and reliable. The computation time is 97.7s. 
-
-```{r bestkappa2, fig.width=7.5,fig.height=7.5,fig.cap="**Figure 1**. Processes of determining the optimal similarity. (a) The optional `kappa` is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and `nrepeat` is 2. (b) The optional `kappa` is (0.01, 0.02, ..., 0.09, 0.1, 0.2, ..., 1) and `nrepeat` is 10."}
 system.time({
 b2 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     data = dt,
                     kappa = c(seq(0.01, 0.1, 0.01), seq(0.2, 1, 0.1)),
-                    nrepeat = 10)
+                    nrepeat = 10,
+                    cores = 6)
 })
 b2$bestkappa
 b2$cvmean
-b2$plot
+
+library(cowplot)
+
+plot_grid(b1$plot,b2$plot,nrow = 1,label_fontfamily = 'serif',
+          labels = paste0('(',letters[1:2],')'),
+          label_fontface = 'plain',label_size = 10,
+          hjust = -1.5,align = 'hv')
 ```
+
+*The default ratio of training set to test set in `gos_bestkappa()` is `1:1`(`0.5`). You can specify the ratio of training set to test set by `nsplit` parameter*
 
 ### 2.3 Spatial prediction
 
-```{r gos_result,fig.width=9.5,fig.height=3.5,fig.cap="**Figure 2**. Geographially optimal similarity (GOS)-based prediction (a) and uncertainty (b)."}
+```{r gos_result,fig.width=9.5,fig.height=3.5,fig.cap=knitr::asis_output("**Figure 2**. Geographially optimal similarity (GOS)-based prediction (a) and uncertainty (b).")}
 system.time({
 g2 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
           data = dt, newdata = grid, kappa = 0.08, cores = 6)
@@ -147,7 +154,6 @@ grid$uc99 <- g2$`uncertainty99`
 
 library(ggplot2)
 library(viridis)
-library(cowplot)
 
 f1 = ggplot(grid, aes(x = Lon, y = Lat, fill = pred)) +
   geom_tile() +
@@ -165,35 +171,33 @@ f2 = ggplot(grid, aes(x = Lon, y = Lat, fill = uc99)) +
 plot_grid(f1,f2,nrow = 1,label_fontfamily = 'serif',
           labels = paste0('(',letters[1:2],')'),
           label_fontface = 'plain',label_size = 10,
-          hjust = -1.5,align = 'hv')  -> p
-p
+          hjust = -1.5,align = 'hv')
 ```
 
-In addition, the following codes can be used to plot uncertainty under different $\zeta$ values. 
+In addition, the following codes can be used to plot uncertainty under different $\zeta$ values.
 
-```{r uncertainty, fig.width=9.5,fig.height=7,fig.cap="**Figure 3**. Geographially optimal similarity (GOS)-based spatial prediction uncertainties under different $\zeta$ values."}
-uc <- g2 %>% 
-  dplyr::select(dplyr::starts_with("uncertainty")) %>% 
-  dplyr::bind_cols(grid[,2:3],.) %>% 
+```{r uncertainty, fig.width=9.5,fig.height=7,fig.cap=knitr::asis_output("**Figure 3**. Geographially optimal similarity (GOS)-based spatial prediction uncertainties under different $\\zeta$ values.")}
+uc <- g2 %>%
+  dplyr::select(dplyr::starts_with("uncertainty")) %>%
+  dplyr::bind_cols(grid[,2:3],.) %>%
   tidyr::pivot_longer(cols = -c(1,2),
                       names_to = "uncertainty",
                       values_to = "value")
-uc <- melt(uc, id = c("Lon", "Lat"))
 ggplot(uc, aes(x = Lon, y = Lat, fill = value)) +
   geom_tile() +
-  scale_fill_viridis(option="mako", direction = -1) + 
+  scale_fill_viridis(option="mako", direction = -1) +
   coord_equal() +
   facet_wrap(~ uncertainty) +
   labs(fill='Uncertainty') +
-  theme_bw() 
+  theme_bw()
 ```
 
 ### 2.4 Model evaluation
 
-We can compare model accuracy of GOS with various models, such as kriging, multivariate regression, regression kriging, random forest, BCS, etc., as shown in [Song (2022)][7]. Here is a simple example of comparing modeling accuracy between BCS and GOS.  
+We can compare model accuracy of GOS with various models, such as kriging, multivariate regression, regression kriging, random forest, BCS, etc., as shown in [Song (2022)][7]. Here is a simple example of comparing modeling accuracy between BCS and GOS.
 
 
-```{r, eval = FALSE}
+```{r }
 set.seed(99)
 # split data for validation: 50% training; 50% testing
 split <- sample(1:nrow(dt), round(nrow(dt)*0.5))
@@ -219,12 +223,12 @@ As a result, the MAE of BCS is 0.5158 and the MAE of GOS is 0.5089, the RMSE of 
 
 
 
-&nbsp; 
+&nbsp;
 
 
 
 [7]: https://doi.org/10.1007/s11004-022-10036-8
 
 
-&nbsp; 
-&nbsp; 
+&nbsp;
+&nbsp;

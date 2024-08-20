@@ -30,13 +30,27 @@ A tibble made up of predictions and uncertainties.
 Computationally optimized function for geographically optimal similarity (GOS) model
 }
 \examples{
-\dontrun{
-data(zn)
-data(grid)
-g = gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-data = zn, newdata = grid, kappa = 0.08, cores = 6)
-g
-}
+data("zn")
+# log-transformation
+hist(zn$Zn)
+zn$Zn <- log(zn$Zn)
+hist(zn$Zn)
+# remove outliers
+library(SecDim)
+k <- rmvoutlier(zn$Zn, coef = 2.5)
+dt <- zn[-k,]
+# split data for validation: 70\% training; 30\% testing
+split <- sample(1:nrow(dt), round(nrow(dt)*0.7))
+train <- dt[split,]
+test <- dt[-split,]
+system.time({
+g1 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
+          data = train, newdata = test, kappa = 0.25, cores = 1)
+})
+test$pred <- g1$pred
+plot(test$Zn, test$pred)
+cor(test$Zn, test$pred)
+
 }
 \references{
 Song, Y. (2022). Geographically Optimal Similarity. Mathematical Geosciences. doi: 10.1007/s11004-022-10036-8.
