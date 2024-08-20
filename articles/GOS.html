@@ -67,7 +67,6 @@
                         <h4 data-toc-skip class="author">Yongze
 Song</h4>
             
-            <h4 data-toc-skip class="date">2022-11-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ausgis/geosimilarity/blob/main/vignettes/GOS.Rmd" class="external-link"><code>vignettes/GOS.Rmd</code></a></small>
       <div class="d-none name"><code>GOS.Rmd</code></div>
@@ -138,11 +137,11 @@ used for the prediction</p></li>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># log-transformation</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">zn</span><span class="op">$</span><span class="va">Zn</span><span class="op">)</span></span></code></pre></div>
-<p><img src="man/figs/correlation-1.png"></p>
+<p><img src="../man/figs/correlation-1.png"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">zn</span><span class="op">$</span><span class="va">Zn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">zn</span><span class="op">$</span><span class="va">Zn</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">zn</span><span class="op">$</span><span class="va">Zn</span><span class="op">)</span></span></code></pre></div>
-<p><img src="man/figs/correlation-2.png"></p>
+<p><img src="../man/figs/correlation-2.png"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># remove outliers</span></span>
@@ -173,7 +172,7 @@ used for the prediction</p></li>
 <span><span class="co">##     legend</span></span>
 <span><span class="va">cor_dt</span> <span class="op">&lt;-</span> <span class="va">dt</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/PerformanceAnalytics/man/chart.Correlation.html" class="external-link">chart.Correlation</a></span><span class="op">(</span><span class="va">cor_dt</span>, histogram <span class="op">=</span> <span class="cn">TRUE</span>, pch <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></span></code></pre></div>
-<p><img src="man/figs/correlation-3.png"></p>
+<p><img src="../man/figs/correlation-3.png"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># multicollinearity</span></span>
@@ -312,7 +311,7 @@ parameter</em></p>
 <span>          label_fontface <span class="op">=</span> <span class="st">'plain'</span>,label_size <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>          hjust <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>,align <span class="op">=</span> <span class="st">'hv'</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="man/figs/gos_result-1.png" alt="Figure 2. Geographially optimal similarity (GOS)-based prediction (a) and uncertainty (b)."><div class="figcaption">
+<img src="../man/figs/gos_result-1.png" alt="Figure 2. Geographially optimal similarity (GOS)-based prediction (a) and uncertainty (b)."><div class="figcaption">
 <strong>Figure 2</strong>. Geographially optimal
 similarity (GOS)-based prediction (a) and uncertainty (b).</div>
 </div>
@@ -333,7 +332,7 @@ under different <span class="math inline">\(\zeta\)</span> values.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>fill<span class="op">=</span><span class="st">'Uncertainty'</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="float">
-<img src="man/figs/uncertainty-1.png" alt="Figure 3. Geographially optimal similarity (GOS)-based spatial prediction uncertainties under different \zeta values."><div class="figcaption">
+<img src="../man/figs/uncertainty-1.png" alt="Figure 3. Geographially optimal similarity (GOS)-based spatial prediction uncertainties under different \zeta values."><div class="figcaption">
 <strong>Figure 3</strong>. Geographially optimal
 similarity (GOS)-based spatial prediction uncertainties under different
 <span class="math inline">\(\zeta\)</span> values.</div>
