@@ -36,6 +36,7 @@
 <li><a class="dropdown-item" href="../articles/GOS.html">Geographically Optimal Similarity (GOS) and the Third Law of Geography in R</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -175,6 +176,10 @@ the cross-validation repeat times <code>nrepeat</code>, a <span class="math inli
 prediction will be selected, but the computation time will be increased.
 You can specify the <code>cores</code> parameter to use multiple CPU
 cores for parallel computing.</p>
+<p><em>The default ratio of train set to test set in
+<code><a href="../reference/gos_bestkappa.html">gos_bestkappa()</a></code> is <code>1:1</code>(<code>0.5</code>). You
+can specify the ratio of training set to test set by <code>nsplit</code>
+parameter</em></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="op">{</span></span>
 <span><span class="va">b1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gos_bestkappa.html">gos_bestkappa</a></span><span class="op">(</span><span class="va">Zn</span> <span class="op">~</span> <span class="va">Slope</span> <span class="op">+</span> <span class="va">Water</span> <span class="op">+</span> <span class="va">NDVI</span>  <span class="op">+</span> <span class="va">SOC</span> <span class="op">+</span> <span class="va">pH</span> <span class="op">+</span> <span class="va">Road</span> <span class="op">+</span> <span class="va">Mine</span>,</span>
@@ -247,10 +252,6 @@ is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and <code>nrepeat</code> is 2. (b) The
 optional <code>kappa</code> is (0.01, 0.02, …, 0.09, 0.1, 0.2, …, 1) and
 <code>nrepeat</code> is 10.</div>
 </div>
-<p><em>The default ratio of training set to test set in
-<code><a href="../reference/gos_bestkappa.html">gos_bestkappa()</a></code> is <code>1:1</code>(<code>0.5</code>). You
-can specify the ratio of training set to test set by <code>nsplit</code>
-parameter</em></p>
 </div>
 <div class="section level3">
 <h3 id="spatial-prediction">2.3 Spatial prediction<a class="anchor" aria-label="anchor" href="#spatial-prediction"></a>
