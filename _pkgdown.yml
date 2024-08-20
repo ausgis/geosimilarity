@@ -16,7 +16,7 @@ authors:
     href: https://spatlyu.github.io/
 
 reference:
-- title: Geographically Optimal Similarity
+- title: Model
   contents:
   - gos
   - gos_bestkappa
