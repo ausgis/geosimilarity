@@ -67,11 +67,11 @@ The `geosimilarity` package contains two spatial datasets:
 - `grid`: Spatial grid data of explanatory variables used for the prediction
 
 ```{r, eval = FALSE}
-install.packages("geosimilarity")
+install.packages("geosimilarity", dependencies = TRUE)
 ```
 
 ```{r}
-library("geosimilarity")
+library(geosimilarity)
 data("zn")
 head(zn)
 ```
@@ -171,20 +171,22 @@ p
 
 In addition, the following codes can be used to plot uncertainty under different $\zeta$ values. 
 
-```{r, eval = FALSE}
-library(reshape2)
-uc <- cbind(grid[,2:3], g2$uncertainty)
+```{r uncertainty, fig.width=9.5,fig.height=7,fig.cap="**Figure 3**. Geographially optimal similarity (GOS)-based spatial prediction uncertainties under different $\zeta$ values."}
+uc <- g2 %>% 
+  dplyr::select(dplyr::starts_with("uncertainty")) %>% 
+  dplyr::bind_cols(grid[,2:3],.) %>% 
+  tidyr::pivot_longer(cols = -c(1,2),
+                      names_to = "uncertainty",
+                      values_to = "value")
 uc <- melt(uc, id = c("Lon", "Lat"))
 ggplot(uc, aes(x = Lon, y = Lat, fill = value)) +
   geom_tile() +
   scale_fill_viridis(option="mako", direction = -1) + 
   coord_equal() +
-  facet_wrap(~ variable) +
+  facet_wrap(~ uncertainty) +
   labs(fill='Uncertainty') +
   theme_bw() 
 ```
-
-![**Figure 3**. Geographially optimal similarity (GOS)-based spatial prediction uncertainties under different $\zeta$ values. ](./fig/ucall.png){width=650px}
 
 ### 2.4 Model evaluation
 
