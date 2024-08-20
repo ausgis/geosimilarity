@@ -2,8 +2,17 @@ Package: geosimilarity
 Title: Geographically Optimal Similarity
 Version: 2.2.9000
 Authors@R: 
-    person("Wenbo", "Lv", , "lyu.geosocial@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0009-0002-6003-3800"))
+    c(
+      person(given = "Yongze", family = "Song",
+             email = "yongze.song@outlook.com", 
+             role = c("aut", "cre"),
+             comment = c(ORCID = "0000-0003-3420-9622"),
+      person(given = "Wenbo", family = "Lv",
+             email = "lyu.geosocial@gmail.com", 
+             role = c("aut"),
+             comment = c(ORCID = "0009-0002-6003-3800")))
+     )
+Maintainer: Wenbo Lv <lyu.geosocial@gmail.com>
 Description: Understanding spatial association is essential for spatial 
              statistical inference, including factor exploration and spatial prediction. 
              Geographically optimal similarity (GOS) model is an effective method 
@@ -17,3 +26,4 @@ License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+Depends: R (>= 4.1.0)
