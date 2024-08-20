@@ -6,11 +6,11 @@ Authors@R:
       person(given = "Yongze", family = "Song",
              email = "yongze.song@outlook.com", 
              role = c("aut", "cre"),
-             comment = c(ORCID = "0000-0003-3420-9622"),
+             comment = c(ORCID = "0000-0003-3420-9622")),
       person(given = "Wenbo", family = "Lv",
              email = "lyu.geosocial@gmail.com", 
              role = c("aut"),
-             comment = c(ORCID = "0009-0002-6003-3800")))
+             comment = c(ORCID = "0009-0002-6003-3800"))
      )
 Maintainer: Wenbo Lv <lyu.geosocial@gmail.com>
 Description: Understanding spatial association is essential for spatial 
@@ -26,4 +26,30 @@ License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+URL: https://github.com/ausgis/geosimilarity, https://ausgis.github.io/geosimilarity
+BugReports: https://github.com/ausgis/geosimilarity/issues
 Depends: R (>= 4.1.0)
+Imports: 
+    stats,
+    parallel,
+    tibble,
+    dplyr (>= 1.1.0),
+    purrr,
+    ggplot2,
+    magrittr,
+    ggrepel
+Suggests: 
+    knitr,
+    tidyverse,
+    rmarkdown,
+    skimr,
+    car,
+    moments,
+    cowplot,
+    viridis,
+    readxl,
+    writexl,
+    DescTools,
+    PerformanceAnalytics,
+    tictoc
+LazyData: true
