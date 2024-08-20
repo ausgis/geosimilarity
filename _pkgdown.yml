@@ -14,3 +14,14 @@ authors:
     href: https://yongzesong.com/
   Wenbo Lv:
     href: https://spatlyu.github.io/
+
+reference:
+- title: Geographically Optimal Similarity
+  contents:
+  - gos
+  - gos_bestkappa
+
+- title: Data
+  contents:
+  - zn
+  - grid
