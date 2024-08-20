@@ -29,12 +29,18 @@ The default value is \code{10}.}
 \item{nsplit}{(optional) The sample training set segmentation ratio,which in \verb{(0,1)}.
 Default is \code{0.5}.}
 
-\item{cores}{(optional) positive integer. If cores > 1, a \code{parallel} package
+\item{cores}{(optional) Positive integer. If cores > 1, a \code{parallel} package
 cluster with that many cores is created and used. You can also supply a cluster
 object. Default is \code{1}.}
 }
 \value{
 A list of the result of the best kappa and the computation process curve.
+\describe{
+\item{\code{bestkappa}}{the result of best kappa}
+\item{\code{cvrmse}}{all RMSE calculations during cross-validation}
+\item{\code{cvmean}}{the average RMSE corresponding to different kappa in the cross-validation process}
+\item{\code{plot}}{the plot of rmse changes corresponding to different kappa}
+}
 }
 \description{
 Computationally optimized function for determining the best kappa parameter for the optimal similarity
@@ -45,8 +51,8 @@ data(zn)
 data(grid)
 system.time({
   b1 = gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-                     data = zn,kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
-                     nrepeat = 2,cores = 1)
+                     data = zn, kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
+                     nrepeat = 2, cores = 1)
 })
 b1$bestkappa
 b1$plot

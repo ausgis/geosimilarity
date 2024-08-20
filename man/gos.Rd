@@ -19,7 +19,7 @@ the probability parameter in quantile operator. The default kappa is 0.25, meani
 that 25\% of observations with high similarity to a prediction location are used for
 modelling.}
 
-\item{cores}{(optional) positive integer. If cores > 1, a \code{parallel} package
+\item{cores}{(optional) Positive integer. If cores > 1, a \code{parallel} package
 cluster with that many cores is created and used. You can also supply a cluster
 object. Default is \code{1}.}
 }

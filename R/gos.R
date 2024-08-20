@@ -12,7 +12,7 @@
 #' the probability parameter in quantile operator. The default kappa is 0.25, meaning
 #' that 25% of observations with high similarity to a prediction location are used for
 #' modelling.
-#' @param cores (optional) positive integer. If cores > 1, a `parallel` package
+#' @param cores (optional) Positive integer. If cores > 1, a `parallel` package
 #' cluster with that many cores is created and used. You can also supply a cluster
 #' object. Default is `1`.
 #'
@@ -109,11 +109,17 @@ gos = \(formula, data = NULL, newdata = NULL, kappa = 0.25, cores = 1){
 #'                The default value is `10`.
 #' @param nsplit (optional) The sample training set segmentation ratio,which in `(0,1)`.
 #' Default is `0.5`.
-#' @param cores (optional) positive integer. If cores > 1, a `parallel` package
+#' @param cores (optional) Positive integer. If cores > 1, a `parallel` package
 #' cluster with that many cores is created and used. You can also supply a cluster
 #' object. Default is `1`.
 #'
 #' @return A list of the result of the best kappa and the computation process curve.
+#' \describe{
+#' \item{\code{bestkappa}}{the result of best kappa}
+#' \item{\code{cvrmse}}{all RMSE calculations during cross-validation}
+#' \item{\code{cvmean}}{the average RMSE corresponding to different kappa in the cross-validation process}
+#' \item{\code{plot}}{the plot of rmse changes corresponding to different kappa}
+#' }
 #' @export
 #'
 #' @examples
@@ -122,14 +128,14 @@ gos = \(formula, data = NULL, newdata = NULL, kappa = 0.25, cores = 1){
 #' data(grid)
 #' system.time({
 #'   b1 = gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-#'                      data = zn,kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
-#'                      nrepeat = 2,cores = 1)
+#'                      data = zn, kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
+#'                      nrepeat = 2, cores = 1)
 #' })
 #' b1$bestkappa
 #' b1$plot
 #' }
-gos_bestkappa = \(formula, data = NULL, kappa = seq(0.05,1,0.05),
-                  nrepeat = 10,nsplit = 0.5,cores = 1){
+gos_bestkappa = \(formula,data = NULL,kappa = seq(0.05,1,0.05),
+                  nrepeat = 10, nsplit = 0.5, cores = 1){
   doclust = FALSE
   if (inherits(cores, "cluster")) {
     doclust = TRUE
@@ -185,7 +191,6 @@ gos_bestkappa = \(formula, data = NULL, kappa = seq(0.05,1,0.05),
   l1 = (max(cv.out$rmse)-min(cv.out$rmse))*0.1
   best_x = cv.out$kappa[k]
   best_y = cv.out$rmse[k]
-
   p1 = ggplot2::ggplot(cv.out,
                        ggplot2::aes(x = kappa, y = rmse))+
     ggplot2::geom_point()+
