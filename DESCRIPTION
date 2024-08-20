@@ -46,7 +46,6 @@ Suggests:
     car,
     SecDim,
     DescTools,
-    PerformanceAnalytics,
-    tictoc
+    PerformanceAnalytics
 LazyData: true
 VignetteBuilder: knitr

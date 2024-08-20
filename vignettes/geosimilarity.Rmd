@@ -20,10 +20,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.path = 'figs/')
-```
-
 
 &nbsp; 
 
@@ -82,7 +78,7 @@ head(zn)
 
 Data pre-processing and variable selection:
 
-```{r, eval = TRUE}
+```{r correlation,warning=FALSE,fig.width=7.5,fig.height=7.5}
 # log-transformation
 hist(zn$Zn)
 zn$Zn <- log(zn$Zn)
@@ -108,16 +104,16 @@ In this step, the selected variables include Slope, Water, NDVI, SOC, pH, Road, 
 
 ### 2.2 Determining the optimal similarity
 
-In the `bestkappa` function, if you set more optional numbers to the `kappa` vector and a higher value of the cross-validation repeat times `nrepeat`, a $\kappa$ value enabling more accurate prediction will be selected, but the computation time will be increased.
+In the `gos_bestkappa()` function, if you set more optional numbers to the `kappa` vector and a higher value of the cross-validation repeat times `nrepeat`, a $\kappa$ value enabling more accurate prediction will be selected, but the computation time will be increased. You can specify the `cores` parameter to use multiple CPU cores for parallel computing.
 
 For instance, if the optional `kappa` is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and `nrepeat` is 2, the $\lambda$ (the optimal $\kappa$) is 0.10, and its corresponding mean cross-validation RMSE is 0.6591. The computation time is 5.9s. 
 
-```{r, eval = TRUE}
+```{r bestkappa1, fig.width=7.5,fig.height=7.5}
 system.time({
-b1 <- bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-                data = dt,
-                kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
-                nrepeat = 2)
+b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
+                    data = dt,
+                    kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
+                    nrepeat = 2)
 })
 b1$bestkappa
 b1$cvmean
@@ -127,47 +123,51 @@ b1$plot
 
 If the optional `kappa` is (0.01, 0.02, ..., 0.09, 0.1, 0.2, ..., 1) and `nrepeat` is 10, the $\lambda$ (the optimal $\kappa$) is 0.08, and its corresponding mean cross-validation RMSE is 0.6668, which are more stable and reliable. The computation time is 97.7s. 
 
-```{r, eval = TRUE}
+```{r bestkappa2, fig.width=7.5,fig.height=7.5,fig.cap="**Figure 1**. Processes of determining the optimal similarity. (a) The optional `kappa` is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and `nrepeat` is 2. (b) The optional `kappa` is (0.01, 0.02, ..., 0.09, 0.1, 0.2, ..., 1) and `nrepeat` is 10."}
 system.time({
-b2 <- bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-                data = dt,
-                kappa = c(seq(0.01, 0.1, 0.01), seq(0.2, 1, 0.1)),
-                nrepeat = 10)
+b2 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
+                    data = dt,
+                    kappa = c(seq(0.01, 0.1, 0.01), seq(0.2, 1, 0.1)),
+                    nrepeat = 10)
 })
 b2$bestkappa
 b2$cvmean
 b2$plot
 ```
 
-![**Figure 1**. Processes of determining the optimal similarity. (a) The optional `kappa` is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and `nrepeat` is 2. (b) The optional `kappa` is (0.01, 0.02, ..., 0.09, 0.1, 0.2, ..., 1) and `nrepeat` is 10. ](./fig/bestkappa.png){width=600px}
-
 ### 2.3 Spatial prediction
 
-```{r, eval = TRUE}
+```{r gos_result,fig.width=9.5,fig.height=3.5,fig.cap="**Figure 2**. Geographially optimal similarity (GOS)-based prediction (a) and uncertainty (b)."}
 system.time({
 g2 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-          data = dt, newdata = grid, kappa = 0.08)
+          data = dt, newdata = grid, kappa = 0.08, cores = 6)
 })
 grid$pred <- exp(g2$pred)
-grid$uc99 <- g2$uncertainty$`0.99`
+grid$uc99 <- g2$`uncertainty99`
+
 library(ggplot2)
 library(viridis)
-ggplot(grid, aes(x = Lon, y = Lat, fill = pred)) +
+library(cowplot)
+
+f1 = ggplot(grid, aes(x = Lon, y = Lat, fill = pred)) +
   geom_tile() +
-  scale_fill_viridis(option="magma", direction = -1) + 
+  scale_fill_viridis(option="magma", direction = -1) +
   coord_equal() +
   labs(fill='Prediction') +
-  theme_bw() 
-ggplot(grid, aes(x = Lon, y = Lat, fill = uc99)) +
+  theme_bw()
+f2 = ggplot(grid, aes(x = Lon, y = Lat, fill = uc99)) +
   geom_tile() +
-  scale_fill_viridis(option="mako", direction = -1) + 
+  scale_fill_viridis(option="mako", direction = -1) +
   coord_equal() +
   labs(fill=bquote(Uncertainty~(zeta==0.99))) +
-  theme_bw() 
+  theme_bw()
+
+plot_grid(f1,f2,nrow = 1,label_fontfamily = 'serif',
+          labels = paste0('(',letters[1:2],')'),
+          label_fontface = 'plain',label_size = 10,
+          hjust = -1.5,align = 'hv')  -> p
+p
 ```
-
-
-![**Figure 2**. Geographially optimal similarity (GOS)-based prediction (a) and uncertainty (b). ](./fig/preduc.png){width=650px}
 
 In addition, the following codes can be used to plot uncertainty under different $\zeta$ values. 
 
