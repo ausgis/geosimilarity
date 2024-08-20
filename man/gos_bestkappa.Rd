@@ -18,12 +18,11 @@ gos_bestkappa(
 
 \item{data}{A data.frame or tibble of observation data}
 
-\item{kappa}{(optional) A numeric vector of the optional percentages of observation locations
-with high similarity to a prediction location.
-kappa = 1 - tau, where tau is the probability parameter
-in quantile operator. kappa = 0.25 means
-that 25\% of observations with high similarity to a prediction
-location are used for modelling.}
+\item{kappa}{(optional) A numeric value of the percentage of observation locations
+with high similarity to a prediction location. $kappa = 1 - tau$, where \code{tau} is
+the probability parameter in quantile operator. The default kappa is 0.25, meaning
+that 25\% of observations with high similarity to a prediction location are used for
+modelling.}
 
 \item{nrepeat}{(optional) A numeric value of the number of cross-validation training times.
 The default value is 10.}
@@ -31,8 +30,9 @@ The default value is 10.}
 \item{nsplit}{(optional) The sample training set segmentation ratio,which in \verb{(0,1)},
 default is \code{0.5}.}
 
-\item{cores}{(optional) positive integer(default is 1). If cores > 1, a 'parallel' package
-cluster with that many cores is created and used. You can also supply a cluster object.}
+\item{cores}{(optional) positive integer. If cores > 1, a 'parallel' package
+cluster with that many cores is created and used. You can also supply a cluster
+object. Default is \code{1}.}
 }
 \value{
 A list of the result of the best kappa and the computation process curve.
