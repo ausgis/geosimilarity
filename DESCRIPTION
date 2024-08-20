@@ -41,15 +41,12 @@ Imports:
 Suggests: 
     knitr,
     tidyverse,
-    rmarkdown,
-    skimr,
-    car,
-    moments,
     cowplot,
     viridis,
-    readxl,
-    writexl,
+    car,
+    SecDim,
     DescTools,
     PerformanceAnalytics,
     tictoc
 LazyData: true
+VignetteBuilder: knitr

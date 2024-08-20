@@ -7,10 +7,18 @@ output:
     fig_caption: true
     self_contained: yes
 vignette: >
-  %\VignetteIndexEntry{Optimal Parameters-based Geographical Detectors (OPGD) Model for Spatial Heterogeneity Analysis and Factor Exploration} 
-  %\VignetteEncoding{UTF-8} 
+  %\VignetteIndexEntry{GOS}
   %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "##",
+  fig.path = "man/figs/"
+)
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.path = 'figs/')
@@ -74,7 +82,7 @@ head(zn)
 
 Data pre-processing and variable selection:
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 # log-transformation
 hist(zn$Zn)
 zn$Zn <- log(zn$Zn)
@@ -104,8 +112,8 @@ In the `bestkappa` function, if you set more optional numbers to the `kappa` vec
 
 For instance, if the optional `kappa` is (0.01, 0.05, 0.1, 0.2, 0.5, 1) and `nrepeat` is 2, the $\lambda$ (the optimal $\kappa$) is 0.10, and its corresponding mean cross-validation RMSE is 0.6591. The computation time is 5.9s. 
 
-```{r, eval = FALSE}
-system.time({ # 5.9s
+```{r, eval = TRUE}
+system.time({
 b1 <- bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                 data = dt,
                 kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
@@ -119,8 +127,8 @@ b1$plot
 
 If the optional `kappa` is (0.01, 0.02, ..., 0.09, 0.1, 0.2, ..., 1) and `nrepeat` is 10, the $\lambda$ (the optimal $\kappa$) is 0.08, and its corresponding mean cross-validation RMSE is 0.6668, which are more stable and reliable. The computation time is 97.7s. 
 
-```{r, eval = FALSE}
-system.time({ # 97.7ss
+```{r, eval = TRUE}
+system.time({
 b2 <- bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                 data = dt,
                 kappa = c(seq(0.01, 0.1, 0.01), seq(0.2, 1, 0.1)),
@@ -135,10 +143,10 @@ b2$plot
 
 ### 2.3 Spatial prediction
 
-```{r, eval = FALSE}
-system.time({ # 26s
+```{r, eval = TRUE}
+system.time({
 g2 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-           data = dt, newdata = grid, kappa = 0.08)
+          data = dt, newdata = grid, kappa = 0.08)
 })
 grid$pred <- exp(g2$pred)
 grid$uc99 <- g2$uncertainty$`0.99`

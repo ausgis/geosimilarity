@@ -20,13 +20,27 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' data(zn)
-#' data(grid)
-#' g = gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-#' data = zn, newdata = grid, kappa = 0.08, cores = 6)
-#' g
-#' }
+#' data("zn")
+#' # log-transformation
+#' hist(zn$Zn)
+#' zn$Zn <- log(zn$Zn)
+#' hist(zn$Zn)
+#' # remove outliers
+#' library(SecDim)
+#' k <- rmvoutlier(zn$Zn, coef = 2.5)
+#' dt <- zn[-k,]
+#' # split data for validation: 70% training; 30% testing
+#' split <- sample(1:nrow(dt), round(nrow(dt)*0.7))
+#' train <- dt[split,]
+#' test <- dt[-split,]
+#' system.time({
+#' g1 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
+#'           data = train, newdata = test, kappa = 0.25, cores = 1)
+#' })
+#' test$pred <- g1$pred
+#' plot(test$Zn, test$pred)
+#' cor(test$Zn, test$pred)
+#'
 gos = \(formula, data = NULL, newdata = NULL, kappa = 0.25, cores = 1){
   doclust = FALSE
   tau = 1 - kappa
@@ -123,17 +137,26 @@ gos = \(formula, data = NULL, newdata = NULL, kappa = 0.25, cores = 1){
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' data(zn)
-#' data(grid)
+#' data("zn")
+#' # log-transformation
+#' hist(zn$Zn)
+#' zn$Zn <- log(zn$Zn)
+#' hist(zn$Zn)
+#' # remove outliers
+#' library(SecDim)
+#' k <- rmvoutlier(zn$Zn, coef = 2.5)
+#' dt <- zn[-k,]
+#' # determine the best kappa
 #' system.time({
-#'   b1 = gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-#'                      data = zn, kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
-#'                      nrepeat = 2, cores = 1)
+#' b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
+#'                     data = dt,
+#'                     kappa = c(0.01, 0.1, 1),
+#'                     nrepeat = 1,
+#'                     cores = 1)
 #' })
 #' b1$bestkappa
 #' b1$plot
-#' }
+#'
 gos_bestkappa = \(formula,data = NULL,kappa = seq(0.05,1,0.05),
                   nrepeat = 10, nsplit = 0.5, cores = 1){
   doclust = FALSE
