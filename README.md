@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![CRAN](https://www.r-pkg.org/badges/version/geosimilarity)](https://CRAN.R-project.org/package=geosimilarity)
+[![Downloads](https://cranlogs.r-pkg.org/badges/geosimilarity)](https://CRAN.R-project.org/package=geosimilarity)
+[![](https://img.shields.io/badge/Mathematical%20Geosciences-10.1007/s11004--022--10036--8-#49c41b.svg)](https://doi.org/10.1007/s11004-022-10036-8)
 [![r-universe](https://ausgis.r-universe.dev/badges/geosimilarity)](https://ausgis.r-universe.dev/geosimilarity)
 
 <!-- badges: end -->
