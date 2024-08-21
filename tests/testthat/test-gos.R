@@ -6,6 +6,6 @@ test_that("Whether multi-core parallel computing is the same as single-core comp
   g1 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
             data = dt, newdata = grid, kappa = 0.08, cores = 1)
   g2 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
-            data = dt, newdata = grid, kappa = 0.08, cores = 6)
+            data = dt, newdata = grid, kappa = 0.08, cores = 2)
   expect_equal(g1, g2)
 })

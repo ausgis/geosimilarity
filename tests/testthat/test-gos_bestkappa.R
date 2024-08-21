@@ -12,6 +12,6 @@ test_that("Whether multi-core parallel computing is the same as single-core comp
                       data = dt,
                       kappa = c(0.01, 0.05, 0.1, 0.2, 0.5, 1),
                       nrepeat = 2,
-                      cores = 4)
+                      cores = 2)
   expect_equal(b1$bestkappa, b2$bestkappa)
 })

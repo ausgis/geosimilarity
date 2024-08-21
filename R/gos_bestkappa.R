@@ -63,6 +63,10 @@ gos_bestkappa = \(formula,data = NULL,kappa = seq(0.05,1,0.05),
   formula = stats::as.formula(formula)
   namey = all.vars(formula)[1]
 
+  CalRMSE = \(yobse,ypred){
+    return(sqrt(mean((yobse-ypred)^2)))
+  }
+
   calcvrmse = \(paramp){# The function is wrapped this way to use `parallel::parLapply`.
     i = paramp[[1]]
     seed = paramp[[2]]
@@ -89,7 +93,7 @@ gos_bestkappa = \(formula,data = NULL,kappa = seq(0.05,1,0.05),
   parak = split(paradf, seq_len(nrow(paradf)))
 
   if (doclust) {
-    parallel::clusterExport(cores,c('gos','CalRMSE'))
+    parallel::clusterExport(cores,c('gos'))
     out_rmse = parallel::parLapply(cores,parak,calcvrmse)
     out_rmse = tibble::as_tibble(do.call(rbind, out_rmse))
   } else {
