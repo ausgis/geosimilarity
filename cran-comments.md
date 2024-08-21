@@ -2,4 +2,5 @@
 
 0 errors | 0 warnings | 0 note
 
-* This is a new release.
+* This release removes Yongze Song as the maintainer and makes 
+  Wenbo Lv the new maintainer of geosimilarity.
