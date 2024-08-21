@@ -1,3 +1,5 @@
+# geosimilarity (development version)
+
 # geosimilarity 3.0
 
 * Multi-core parallel computing support based on the `parallel` package.
