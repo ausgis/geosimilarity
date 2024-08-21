@@ -101,12 +101,30 @@ hist(zn$Zn)
 
 # remove outliers
 library(SecDim)
+## This is `SecDim` package.
+##                         
+## To cite `SecDim` in publications, please use:
+##                         
+## Song, Y. (2022). The second dimension of spatial association. International Journal of Applied Earth Observation and Geoinformation. 2022. 111, 102834. doi: 10.1016/j.jag.2022.102834.
+## 
 k <- rmvoutlier(zn$Zn, coef = 2.5)
 ## Remove 9 outlier(s)
 dt <- zn[-k,]
 
 # correlation
 library("PerformanceAnalytics")
+## Loading required package: xts
+## Loading required package: zoo
+## 
+## Attaching package: 'zoo'
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+## 
+## Attaching package: 'PerformanceAnalytics'
+## The following object is masked from 'package:graphics':
+## 
+##     legend
 cor_dt <- dt[, c(3:12)]
 chart.Correlation(cor_dt, histogram = TRUE, pch = 19)
 ```
@@ -117,6 +135,12 @@ chart.Correlation(cor_dt, histogram = TRUE, pch = 19)
 
 # multicollinearity
 library(car)
+## Loading required package: carData
+## 
+## Attaching package: 'car'
+## The following object is masked from 'package:SecDim':
+## 
+##     vif
 m1 <- lm(Zn ~ Slope + Water + NDVI + SOC + pH + Road + Mine, data = dt)
 car::vif(m1)
 ##    Slope    Water     NDVI      SOC       pH     Road     Mine 
@@ -129,7 +153,8 @@ In this step, the selected variables include Slope, Water, NDVI, SOC, pH, Road, 
 
 In the `gos_bestkappa()` function, if you set more optional numbers to the `kappa` vector and a higher value of the cross-validation repeat times `nrepeat`, a $\kappa$ value enabling more accurate prediction will be selected, but the computation time will be increased. You can specify the `cores` parameter to use multiple CPU cores for parallel computing.
 
-*The default ratio of train set to test set in `gos_bestkappa()` is `1:1`(`0.5`). You can specify the ratio of training set to test set by `nsplit` parameter*
+*The default ratio of train set to test set in `gos_bestkappa()` is `1:1`(`0.5`). You can specify the ratio of train set to test set by `nsplit` parameter*
+
 
 ``` r
 system.time({
@@ -140,7 +165,7 @@ b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     cores = 1)
 })
 ##    user  system elapsed 
-##    2.58    0.03    4.33
+##    3.08    0.05    4.97
 b1$bestkappa
 ## [1] 0.1
 b1$cvmean
@@ -162,7 +187,7 @@ b2 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     cores = 6)
 })
 ##    user  system elapsed 
-##    0.03    0.02   16.72
+##    0.02    0.03   17.42
 b2$bestkappa
 ## [1] 0.08
 b2$cvmean
@@ -208,12 +233,13 @@ g2 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
           data = dt, newdata = grid, kappa = 0.08, cores = 6)
 })
 ##    user  system elapsed 
-##       0       0       4
+##    0.02    0.02    3.89
 grid$pred <- exp(g2$pred)
 grid$uc99 <- g2$`uncertainty99`
 
 library(ggplot2)
 library(viridis)
+## Loading required package: viridisLite
 
 f1 = ggplot(grid, aes(x = Lon, y = Lat, fill = pred)) +
   geom_tile() +
@@ -271,6 +297,11 @@ train <- dt[split,]
 test <- dt[-split,]
 
 library(DescTools)
+## 
+## Attaching package: 'DescTools'
+## The following object is masked from 'package:car':
+## 
+##     Recode
 # BCS
 h1 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
           data = train, newdata = test, kappa = 1)
