@@ -39,6 +39,6 @@ install.packages('geosimilarity',
 ``` r
 # install.packages("devtools")
 devtools::install_github("ausgis/geosimilarity",
-                         build_vignettes = T,
-                         dep = T)
+                         build_vignettes = TRUE,
+                         dep = TRUE)
 ```
