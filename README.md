@@ -16,8 +16,8 @@
 
 ## Installation
 
-- Install from
-  [CRAN](https://cran.r-project.org/web/packages/geosimilarity) with:
+- Install from [CRAN](https://CRAN.R-project.org/package=geosimilarity)
+  with:
 
 ``` r
 install.packages("geosimilarity", dep = TRUE)
