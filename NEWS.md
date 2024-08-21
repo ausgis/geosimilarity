@@ -1,5 +1,7 @@
 # geosimilarity (development version)
 
+* Automatically loaded the `tibble` namespace when the package is loaded.
+
 # geosimilarity 3.0
 
 * Multi-core parallel computing support based on the `parallel` package.
