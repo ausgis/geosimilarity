@@ -17,6 +17,15 @@
 #' object. Default is `1`.
 #'
 #' @return A tibble made up of predictions and uncertainties.
+#' \describe{
+#' \item{\code{pred}}{GOS model prediction results}
+#' \item{\code{uncertainty90}}{uncertainty under 0.9 quantile}
+#' \item{\code{uncertainty95}}{uncertainty under 0.95 quantile}
+#' \item{\code{uncertainty99}}{uncertainty under 0.99 quantile}
+#' \item{\code{uncertainty99.5}}{uncertainty under 0.995 quantile}
+#' \item{\code{uncertainty99.9}}{uncertainty under 0.999 quantile}
+#' \item{\code{uncertainty100}}{uncertainty under 1 quantile}
+#' }
 #' @export
 #'
 #' @examples
