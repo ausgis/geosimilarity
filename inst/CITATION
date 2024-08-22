@@ -1,0 +1,18 @@
+bibentry(
+  bibtype = "Article",
+  title = "Geographically Optimal Similarity",
+  author = c(person("Song", "Yongze")),
+  year = "2022",
+  month = "nov",
+  volume = "55",
+  number = "3",
+  pages = "295–320",
+  journal = "Mathematical Geosciences",
+  issn = "1874-8953",
+  publisher = "Springer Science and Business Media LLC",
+  doi = "10.1007/s11004-022-10036-8",
+  url = "https://doi.org/10.1007/s11004-022-10036-8",
+  key = "Song_2022",
+  header = "To cite `geosimilarity` in publications, please use the following citation:",
+  footer = "If you use this software, please cite our article in Mathematical Geosciences."
+)
