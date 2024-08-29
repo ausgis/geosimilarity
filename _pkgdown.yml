@@ -21,6 +21,9 @@ reference:
   - gos
   - gos_bestkappa
 
+- title: Utils
+  - removeoutlier
+
 - title: Data
   contents:
   - zn
