@@ -45,7 +45,6 @@ hist(zn$Zn)
 zn$Zn <- log(zn$Zn)
 hist(zn$Zn)
 # remove outliers
-library(SecDim)
 k <- rmvoutlier(zn$Zn, coef = 2.5)
 dt <- zn[-k,]
 # split data for validation: 70\% training; 30\% testing

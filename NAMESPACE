@@ -3,4 +3,6 @@
 export("%>%")
 export(gos)
 export(gos_bestkappa)
+export(rmvoutlier)
 importFrom(magrittr,"%>%")
+importFrom(stats,sd)

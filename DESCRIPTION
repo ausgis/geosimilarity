@@ -43,7 +43,6 @@ Suggests:
     cowplot,
     viridis,
     car,
-    SecDim,
     DescTools,
     PerformanceAnalytics,
     testthat (>= 3.0.0)
