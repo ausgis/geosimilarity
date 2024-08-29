@@ -1,6 +1,6 @@
 # geosimilarity 3.2
 
-* Update the information attached to the package
+* Update package attachment information.
 
 # geosimilarity 3.1
 
