@@ -1,6 +1,10 @@
 # geosimilarity 3.2
 
-* Update package attachment information.
+* Add `removeoutlier()` function.
+
+* Drop Suggests dependency of `SecDim` package.
+
+* Use the correct version number in package attachment information.
 
 # geosimilarity 3.1
 
