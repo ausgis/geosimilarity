@@ -31,7 +31,6 @@ NULL
 #'
 #' @export
 #'
-
 removeoutlier = \(x, coef = 2.5){
   k = which((is.na(x)) |
                (x > (mean(x, na.rm = T) + coef * stats::sd(x, na.rm = T)) |
