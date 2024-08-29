@@ -1,3 +1,7 @@
+# geosimilarity 3.2
+
+* Update the information attached to the package
+
 # geosimilarity 3.1
 
 * Automatically loaded the `tibble` namespace when the package is loaded.
