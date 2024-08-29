@@ -1,4 +1,4 @@
-# geosimilarity (development version)
+# geosimilarity 3.1.0
 
 * Automatically loaded the `tibble` namespace when the package is loaded.
 
