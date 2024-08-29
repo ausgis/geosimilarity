@@ -19,8 +19,6 @@ NULL
 #'
 #' @return Location of outliers in the vector
 #'
-#' @importFrom stats sd
-#'
 #' @examples
 #' data("zn")
 #' # log-transformation
@@ -28,13 +26,13 @@ NULL
 #' zn$Zn <- log(zn$Zn)
 #' hist(zn$Zn)
 #' # remove outliers
-#' k <- rmvoutlier(zn$Zn, coef = 2.5)
+#' k <- removeoutlier(zn$Zn, coef = 2.5)
 #' k
 #'
 #' @export
 #'
 
-rmvoutlier = \(x, coef = 2.5){
+removeoutlier = \(x, coef = 2.5){
   k = which((is.na(x)) |
                (x > (mean(x, na.rm = T) + coef * stats::sd(x, na.rm = T)) |
                   x < (mean(x, na.rm = T) - coef * stats::sd(x, na.rm = T))  ))

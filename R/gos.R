@@ -35,7 +35,7 @@
 #' zn$Zn <- log(zn$Zn)
 #' hist(zn$Zn)
 #' # remove outliers
-#' k <- rmvoutlier(zn$Zn, coef = 2.5)
+#' k <- removeoutlier(zn$Zn, coef = 2.5)
 #' dt <- zn[-k,]
 #' # split data for validation: 70% training; 30% testing
 #' split <- sample(1:nrow(dt), round(nrow(dt)*0.7))
