@@ -67,7 +67,7 @@
       <h1>Geographically Optimal Similarity (GOS) and the Third Law of Geography in R</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ausgis/geosimilarity/blob/main/vignettes/GOS.Rmd" class="external-link"><code>vignettes/GOS.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ausgis/geosimilarity/blob/v3.2/vignettes/GOS.Rmd" class="external-link"><code>vignettes/GOS.Rmd</code></a></small>
       <div class="d-none name"><code>GOS.Rmd</code></div>
     </div>
 
@@ -151,7 +151,7 @@ used for the prediction</p></li>
 <span><span class="co">##                         </span></span>
 <span><span class="co">## Song, Y. (2022). The second dimension of spatial association. International Journal of Applied Earth Observation and Geoinformation. 2022. 111, 102834. doi: 10.1016/j.jag.2022.102834.</span></span>
 <span><span class="co">## </span></span>
-<span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/SecDim/man/rmvoutlier.html" class="external-link">rmvoutlier</a></span><span class="op">(</span><span class="va">zn</span><span class="op">$</span><span class="va">Zn</span>, coef <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></span>
+<span><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">rmvoutlier</span><span class="op">(</span><span class="va">zn</span><span class="op">$</span><span class="va">Zn</span>, coef <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></span>
 <span><span class="co">## Remove 9 outlier(s)</span></span>
 <span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="va">zn</span><span class="op">[</span><span class="op">-</span><span class="va">k</span>,<span class="op">]</span></span>
 <span></span>
