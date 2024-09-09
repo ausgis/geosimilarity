@@ -5,7 +5,7 @@ output:
     fig_caption: true
     self_contained: yes
 vignette: >
-  %\VignetteIndexEntry{GOS}
+  %\VignetteIndexEntry{geosimilarity}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
