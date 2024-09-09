@@ -1,4 +1,4 @@
 devtools::load_all()
 
-knitr::knit("vignettes/GOS.Rmd.orig",
-            "vignettes/GOS.Rmd")
+knitr::knit("vignettes/geosimilarity.Rmd.orig",
+            "vignettes/geosimilarity.Rmd")
