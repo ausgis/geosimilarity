@@ -1,3 +1,7 @@
+# geosimilarity 3.3
+
+* Fix bug in executing the GOS model when the right side of the formula is `.`.
+
 # geosimilarity 3.2
 
 * Add `removeoutlier()` function.
