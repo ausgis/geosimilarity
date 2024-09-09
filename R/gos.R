@@ -60,12 +60,12 @@ gos = \(formula, data = NULL, newdata = NULL, kappa = 0.25, cores = 1){
   nv = ifelse(formula.vars[2] == ".", ncol(data) - 1, length(formula.vars) - 1)
 
   if (formula.vars[2] == "."){
-    obs_explanatory = data[,-which(colnames(data) == formula.vars[1])]
-    pred_explanatory = newdata[,-which(colnames(newdata) == formula.vars[1])]
+    xnames = colnames(data)[-which(colnames(data) == formula.vars[1])]
   } else {
-    obs_explanatory = subset(data, TRUE, match(formula.vars[-1], colnames(data)))
-    pred_explanatory = subset(newdata, TRUE, match(formula.vars[-1], colnames(newdata)))
+    xnames = formula.vars[-1]
   }
+  obs_explanatory = dplyr::select(data,dplyr::all_of(xnames))
+  pred_explanatory = dplyr::select(newdata,dplyr::all_of(xnames))
 
   if (inherits(cores, "cluster")) {
     doclust = TRUE
