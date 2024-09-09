@@ -9,6 +9,14 @@ home:
   title: |
     geosimilarity | Geographically Optimal Similarity
 
+navbar:
+  components:
+    articles:
+      text: Vignettes
+      menu:
+      - text: Geographically Optimal Similarity (GOS) and the Third Law of Geography in R
+        href: articles/geosimilarity.html
+
 authors:
   Yongze Song:
     href: https://yongzesong.com/
