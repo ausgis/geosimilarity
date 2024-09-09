@@ -47,7 +47,7 @@
 #' b1$bestkappa
 #' b1$plot
 #'
-gos_bestkappa = \(formula,data = NULL,kappa = seq(0.05,1,0.05),
+gos_bestkappa = \(formula, data = NULL, kappa = seq(0.05,1,0.05),
                   nrepeat = 10, nsplit = 0.5, cores = 1){
   doclust = FALSE
   if (inherits(cores, "cluster")) {
