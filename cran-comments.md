@@ -2,5 +2,5 @@
 
 0 errors | 0 warnings | 0 note
 
-* This release corrects the incorrect version number reported in the package 
-  attachment information and drops `Suggests` dependency of `SecDim` package.
+* This release fixs bug in executing the GOS model when the right side of the 
+  formula is `.`.
