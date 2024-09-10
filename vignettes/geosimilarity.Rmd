@@ -99,13 +99,24 @@ hist(zn$Zn)
 ``` r
 
 # remove outliers
-library(SecDim)
-k <- rmvoutlier(zn$Zn, coef = 2.5)
+k <- removeoutlier(zn$Zn, coef = 2.5)
 ## Remove 9 outlier(s)
 dt <- zn[-k,]
 
 # correlation
 library("PerformanceAnalytics")
+## Loading required package: xts
+## Loading required package: zoo
+## 
+## Attaching package: 'zoo'
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+## 
+## Attaching package: 'PerformanceAnalytics'
+## The following object is masked from 'package:graphics':
+## 
+##     legend
 cor_dt <- dt[, c(3:12)]
 chart.Correlation(cor_dt, histogram = TRUE, pch = 19)
 ```
@@ -116,6 +127,7 @@ chart.Correlation(cor_dt, histogram = TRUE, pch = 19)
 
 # multicollinearity
 library(car)
+## Loading required package: carData
 m1 <- lm(Zn ~ Slope + Water + NDVI + SOC + pH + Road + Mine, data = dt)
 car::vif(m1)
 ##    Slope    Water     NDVI      SOC       pH     Road     Mine 
@@ -140,7 +152,7 @@ b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     cores = 1)
 })
 ##    user  system elapsed 
-##    3.04    0.06    4.61
+##    2.53    0.08    4.91
 b1$bestkappa
 ## [1] 0.1
 b1$cvmean
@@ -162,7 +174,7 @@ b2 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     cores = 6)
 })
 ##    user  system elapsed 
-##    0.03    0.00   17.64
+##    0.04    0.02   17.15
 b2$bestkappa
 ## [1] 0.08
 b2$cvmean
@@ -208,12 +220,13 @@ g2 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
           data = dt, newdata = grid, kappa = 0.08, cores = 6)
 })
 ##    user  system elapsed 
-##    0.02    0.00    5.64
+##    0.00    0.00    5.47
 grid$pred <- exp(g2$pred)
 grid$uc99 <- g2$`uncertainty99`
 
 library(ggplot2)
 library(viridis)
+## Loading required package: viridisLite
 
 f1 = ggplot(grid, aes(x = Lon, y = Lat, fill = pred)) +
   geom_tile() +
@@ -271,6 +284,11 @@ train <- dt[split,]
 test <- dt[-split,]
 
 library(DescTools)
+## 
+## Attaching package: 'DescTools'
+## The following object is masked from 'package:car':
+## 
+##     Recode
 # BCS
 h1 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
           data = train, newdata = test, kappa = 1)
