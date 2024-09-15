@@ -39,7 +39,6 @@ Imports:
     ggrepel
 Suggests: 
     knitr,
-    tidyverse,
     cowplot,
     viridis,
     car,
