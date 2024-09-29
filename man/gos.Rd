@@ -9,9 +9,9 @@ gos(formula, data = NULL, newdata = NULL, kappa = 0.25, cores = 1)
 \arguments{
 \item{formula}{A formula of GOS model.}
 
-\item{data}{A data.frame or tibble of observation data.}
+\item{data}{A \code{data.frame} or \code{tibble} of observation data.}
 
-\item{newdata}{A data.frame or tibble of prediction variables data.}
+\item{newdata}{A \code{data.frame} or \code{tibble} of prediction variables data.}
 
 \item{kappa}{(optional) A numeric value of the percentage of observation locations
 with high similarity to a prediction location. \eqn{kappa = 1 - tau}, where \code{tau} is
@@ -24,7 +24,7 @@ cluster with that many cores is created and used. You can also supply a cluster
 object. Default is \code{1}.}
 }
 \value{
-A tibble made up of predictions and uncertainties.
+A \code{tibble} made up of predictions and uncertainties.
 \describe{
 \item{\code{pred}}{GOS model prediction results}
 \item{\code{uncertainty90}}{uncertainty under 0.9 quantile}

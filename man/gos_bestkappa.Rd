@@ -16,7 +16,7 @@ gos_bestkappa(
 \arguments{
 \item{formula}{A formula of GOS model.}
 
-\item{data}{A data.frame or tibble of observation data.}
+\item{data}{A \code{data.frame} or \code{tibble} of observation data.}
 
 \item{kappa}{(optional) A numeric value of the percentage of observation locations
 with high similarity to a prediction location. \eqn{kappa = 1 - tau}, where \code{tau} is
@@ -34,7 +34,7 @@ cluster with that many cores is created and used. You can also supply a cluster
 object. Default is \code{1}.}
 }
 \value{
-A list of the result of the best kappa and the computation process curve.
+A list.
 \describe{
 \item{\code{bestkappa}}{the result of best kappa}
 \item{\code{cvrmse}}{all RMSE calculations during cross-validation}
