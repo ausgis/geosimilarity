@@ -1,6 +1,6 @@
 Package: geosimilarity
 Title: Geographically Optimal Similarity
-Version: 3.3
+Version: 3.6
 Authors@R: 
     c(
       person(given = "Yongze", family = "Song",
