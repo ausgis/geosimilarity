@@ -152,7 +152,7 @@ b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     cores = 1)
 })
 ##    user  system elapsed 
-##    2.53    0.08    4.91
+##    3.12    0.06    4.67
 b1$bestkappa
 ## [1] 0.1
 b1$cvmean
@@ -174,7 +174,7 @@ b2 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     cores = 6)
 })
 ##    user  system elapsed 
-##    0.04    0.02   17.15
+##    0.04    0.03   16.32
 b2$bestkappa
 ## [1] 0.08
 b2$cvmean
@@ -220,7 +220,7 @@ g2 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
           data = dt, newdata = grid, kappa = 0.08, cores = 6)
 })
 ##    user  system elapsed 
-##    0.00    0.00    5.47
+##    0.05    0.03    5.60
 grid$pred <- exp(g2$pred)
 grid$uc99 <- g2$`uncertainty99`
 
