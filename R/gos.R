@@ -5,8 +5,8 @@
 #' Song, Y. (2022). Geographically Optimal Similarity. Mathematical Geosciences. doi: 10.1007/s11004-022-10036-8.
 #'
 #' @param formula A formula of GOS model.
-#' @param data A data.frame or tibble of observation data.
-#' @param newdata A data.frame or tibble of prediction variables data.
+#' @param data A `data.frame` or `tibble` of observation data.
+#' @param newdata A `data.frame` or `tibble` of prediction variables data.
 #' @param kappa (optional) A numeric value of the percentage of observation locations
 #' with high similarity to a prediction location. \eqn{kappa = 1 - tau}, where `tau` is
 #' the probability parameter in quantile operator. The default kappa is 0.25, meaning
@@ -16,7 +16,7 @@
 #' cluster with that many cores is created and used. You can also supply a cluster
 #' object. Default is `1`.
 #'
-#' @return A tibble made up of predictions and uncertainties.
+#' @return A `tibble` made up of predictions and uncertainties.
 #' \describe{
 #' \item{\code{pred}}{GOS model prediction results}
 #' \item{\code{uncertainty90}}{uncertainty under 0.9 quantile}
