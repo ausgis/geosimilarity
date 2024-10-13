@@ -1,7 +1,6 @@
 url: https://ausgis.github.io/geosimilarity/
 template:
   bootstrap: 5
-  bootswatch: spacelab
   math-rendering: mathjax
   light-switch: true
 
@@ -10,6 +9,9 @@ home:
     geosimilarity | Geographically Optimal Similarity
 
 navbar:
+  structure:
+    right: [search, github]
+    left: [reference, articles, news]
   components:
     articles:
       text: Vignettes
