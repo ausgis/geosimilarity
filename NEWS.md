@@ -1,3 +1,7 @@
+# geosimilarity 3.7
+
+* No explicit change, only updating the readme.
+
 # geosimilarity 3.6
 
 * No explicit change, only updating the document.
