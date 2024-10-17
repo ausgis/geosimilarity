@@ -6,6 +6,7 @@
 <!-- badges: start -->
 
 [![CRAN](https://www.r-pkg.org/badges/version/geosimilarity)](https://CRAN.R-project.org/package=geosimilarity)
+[![Downloads_All](https://badgen.net/cran/dt/geosimilarity?color=orange)](https://CRAN.R-project.org/package=geosimilarity)
 [![Downloads](https://cranlogs.r-pkg.org/badges/geosimilarity)](https://CRAN.R-project.org/package=geosimilarity)
 [![DOI](https://ausgis.github.io/badges/gos_paper.svg)](https://doi.org/10.1007/s11004-022-10036-8)
 [![R-universe](https://ausgis.r-universe.dev/badges/geosimilarity)](https://ausgis.r-universe.dev/geosimilarity)
@@ -52,9 +53,9 @@ install.packages("geosimilarity", dep = TRUE)
   [R-universe](https://ausgis.r-universe.dev/geosimilarity) with:
 
 ``` r
-install.packages('geosimilarity',
+install.packages("geosimilarity",
                  repos = c("https://ausgis.r-universe.dev",
-                           "https://cran.rstudio.com/"),
+                           "https://cloud.r-project.org"),
                  dep = TRUE)
 ```
 
