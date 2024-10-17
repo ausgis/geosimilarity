@@ -66,6 +66,8 @@ The `geosimilarity` package contains two spatial datasets:
 
 ```{r, eval = FALSE}
 install.packages("geosimilarity", dependencies = TRUE)
+# or run the following code:
+install.packages("geosimilarity", dep = TRUE)
 ```
 
 ```{r}
