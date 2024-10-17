@@ -2,4 +2,4 @@
 
 0 errors | 0 warnings | 0 note
 
-* This release updates doc of `geosimilarity`.
+* This release updates readme of `geosimilarity`.
