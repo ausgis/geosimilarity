@@ -1,4 +1,4 @@
-#' @title Pipe operator
+#' @title pipe operator
 #' @description
 #' See \code{magrittr::\link[magrittr:pipe]{\%>\%}} for details.
 #'
@@ -11,9 +11,10 @@
 #' @export
 NULL
 
-#' Removing outliers.
+#' removing outliers.
 #'
-#' @description Function for removing outliers.
+#' @description
+#' Function for removing outliers.
 #'
 #' @param x A vector of a variable
 #' @param coef A number of the times of standard deviation. Default is `2.5`.

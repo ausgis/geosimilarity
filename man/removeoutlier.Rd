@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{removeoutlier}
 \alias{removeoutlier}
-\title{Removing outliers.}
+\title{removing outliers.}
 \usage{
 removeoutlier(x, coef = 2.5)
 }

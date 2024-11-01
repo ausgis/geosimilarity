@@ -3,7 +3,7 @@
 \docType{data}
 \name{zn}
 \alias{zn}
-\title{Spatial datasets of trace element Zn.}
+\title{spatial datasets of trace element Zn.}
 \format{
 \code{zn}: A tibble of trace element Zn with 894 rows and 12 variables
 }
@@ -11,7 +11,7 @@
 zn
 }
 \description{
-Spatial datasets of trace element Zn.
+spatial datasets of trace element Zn.
 }
 \author{
 Yongze Song \email{yongze.song@outlook.com}

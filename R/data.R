@@ -1,5 +1,4 @@
-#' @title Spatial datasets of trace element Zn.
-#' @description Spatial datasets of trace element Zn.
+#' @title spatial datasets of trace element Zn.
 #'
 #' @name zn
 #' @format \code{zn}: A tibble of trace element Zn with 894 rows and 12 variables
@@ -8,8 +7,7 @@
 #' @keywords dataset trace elements
 "zn"
 
-#' @title Spatial grid data of explanatory variables.
-#' @description Spatial grid data of explanatory variables.
+#' @title spatial grid data of explanatory variables.
 #'
 #' @name grid
 #' @format \code{grid}: A tibble of grided trace element explanatory variables
