@@ -193,7 +193,7 @@ parameter</em></p>
 <span>                    cores <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="co">##    user  system elapsed </span></span>
-<span><span class="co">##    3.42    0.08    4.67</span></span>
+<span><span class="co">##    3.67    0.06    4.74</span></span>
 <span><span class="va">b1</span><span class="op">$</span><span class="va">bestkappa</span></span>
 <span><span class="co">## [1] 0.1</span></span>
 <span><span class="va">b1</span><span class="op">$</span><span class="va">cvmean</span></span>
@@ -215,7 +215,7 @@ parameter</em></p>
 <span>                    cores <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="co">##    user  system elapsed </span></span>
-<span><span class="co">##    0.05    0.00   17.17</span></span>
+<span><span class="co">##    0.01    0.02   17.05</span></span>
 <span><span class="va">b2</span><span class="op">$</span><span class="va">bestkappa</span></span>
 <span><span class="co">## [1] 0.08</span></span>
 <span><span class="va">b2</span><span class="op">$</span><span class="va">cvmean</span></span>
@@ -266,7 +266,7 @@ optional <code>kappa</code> is (0.01, 0.02, …, 0.09, 0.1, 0.2, …, 1) and
 <span>          data <span class="op">=</span> <span class="va">dt</span>, newdata <span class="op">=</span> <span class="va">grid</span>, kappa <span class="op">=</span> <span class="fl">0.08</span>, cores <span class="op">=</span> <span class="fl">6</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
 <span><span class="co">##    user  system elapsed </span></span>
-<span><span class="co">##    0.06    0.00    5.53</span></span>
+<span><span class="co">##    0.03    0.00    5.86</span></span>
 <span><span class="va">grid</span><span class="op">$</span><span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">g2</span><span class="op">$</span><span class="va">pred</span><span class="op">)</span></span>
 <span><span class="va">grid</span><span class="op">$</span><span class="va">uc99</span> <span class="op">&lt;-</span> <span class="va">g2</span><span class="op">$</span><span class="va">`uncertainty99`</span></span>
 <span></span>
