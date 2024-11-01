@@ -2,4 +2,5 @@
 
 0 errors | 0 warnings | 0 note
 
-* This release updates readme of `geosimilarity`.
+* This release better supports geographically optimal similarity. For more details, 
+  please refer to `NEWS.md`.
