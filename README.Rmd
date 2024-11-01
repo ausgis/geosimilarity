@@ -38,7 +38,7 @@ Please cite **geosimilarity** as:
 A BibTeX entry for LaTeX users is:
 
 ``` bib
-@Article{Song_2022,
+@Article{song2022gos,
     title = {Geographically Optimal Similarity},
     author = {Song Yongze},
     year = {2022},
