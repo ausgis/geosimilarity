@@ -1,7 +1,7 @@
 bibentry(
   bibtype = "Article",
   title = "Geographically Optimal Similarity",
-  author = "Song, Yongze",
+  author = c(person(given = "Yongze", family = "Song")),
   year = "2022",
   month = "nov",
   volume = "55",
