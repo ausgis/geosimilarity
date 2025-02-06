@@ -1,5 +1,7 @@
 # geosimilarity 3.8
 
+* No explicit change, only correct the package citation.
+
 # geosimilarity 3.7
 
 * No explicit change, only update the readme.
