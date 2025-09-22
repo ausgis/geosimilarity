@@ -24,7 +24,7 @@ Description: Understanding spatial association is essential for spatial
 License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 URL: https://github.com/ausgis/geosimilarity, https://ausgis.github.io/geosimilarity/
 BugReports: https://github.com/ausgis/geosimilarity/issues
 Depends: R (>= 4.1.0)
