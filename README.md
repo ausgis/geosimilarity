@@ -10,7 +10,7 @@
 [![Downloads](https://cranlogs.r-pkg.org/badges/geosimilarity)](https://CRAN.R-project.org/package=geosimilarity)
 [![DOI](https://ausgis.github.io/badges/gos_paper.svg)](https://doi.org/10.1007/s11004-022-10036-8)
 [![R-universe](https://ausgis.r-universe.dev/badges/geosimilarity)](https://ausgis.r-universe.dev/geosimilarity)
-
+[![R-CMD-check](https://github.com/ausgis/geosimilarity/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ausgis/geosimilarity/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **Geographically Optimal Similarity**
