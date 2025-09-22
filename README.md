@@ -26,7 +26,7 @@ A BibTeX entry for LaTeX users is:
 ``` bib
 @article{song2022gos,
   title = {Geographically Optimal Similarity},
-  author = {Yongze Song},
+  author = {Song, Yongze},
   year = {2022},
   month = {nov},
   volume = {55},
