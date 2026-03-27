@@ -97,7 +97,7 @@ g1 <- gos(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
           data = train, newdata = test, kappa = 0.25, cores = 1)
 })
 #>    user  system elapsed 
-#>   0.319   0.016   0.335 
+#>   0.307   0.021   0.328 
 test$pred <- g1$pred
 plot(test$Zn, test$pred)
 

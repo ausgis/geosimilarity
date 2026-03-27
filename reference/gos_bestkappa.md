@@ -99,7 +99,7 @@ b1 <- gos_bestkappa(Zn ~ Slope + Water + NDVI  + SOC + pH + Road + Mine,
                     cores = 1)
 })
 #>    user  system elapsed 
-#>   1.683   0.004   1.688 
+#>   1.647   0.007   1.655 
 b1$bestkappa
 #> [1] 1
 b1$plot
