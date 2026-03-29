@@ -11,7 +11,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/ausgis/geosimilarity/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/ausgis/geosimilarity/blob/v3.9/inst/CITATION)
 
 Song Y (2022). “Geographically Optimal Similarity.” *Mathematical
 Geosciences*, **55**(3), 295–320.
