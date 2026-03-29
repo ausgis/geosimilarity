@@ -1,5 +1,7 @@
 # Changelog
 
+## geosimilarity 3.10
+
 ## geosimilarity 3.9
 
 CRAN release: 2026-03-27
