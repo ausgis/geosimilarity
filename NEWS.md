@@ -1,3 +1,5 @@
+# geosimilarity 3.10
+
 # geosimilarity 3.9
 
 * Correct maintainer surname spelling from `Lv` to `Lyu` for pinyin compliance.
