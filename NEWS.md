@@ -1,5 +1,7 @@
 # geosimilarity 3.9
 
+* Correct maintainer surname spelling from `Lv` to `Lyu` for pinyin compliance.
+
 # geosimilarity 3.8
 
 * No explicit change, only correct the package citation.
